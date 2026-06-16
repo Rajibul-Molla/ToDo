@@ -71,24 +71,28 @@ export default function Index() {
     return (
       <View
         style={{
-          borderWidth: 2,
-          borderColor: "#E31A22",
-          backgroundColor: "#E31A22",
-          borderRadius: 6,
-          padding: 10,
-          paddingVertical: 20,
-          marginBottom: 6,
-          margin: 6,
+          backgroundColor: "#FFFFFF",
+          borderRadius: 14,
+          padding: 16,
+          marginBottom: 10,
+          marginHorizontal: 6,
           flexDirection: "row",
           alignItems: "center",
-          elevation: 8,
+          shadowColor: "#000",
+          shadowOffset: { width: 0, height: 4 },
+          shadowOpacity: 0.08,
+          shadowRadius: 8,
+          elevation: 4,
+          borderLeftWidth: 5,
+          borderLeftColor: "#E31A22",
+          // marginTop:10
         }}
       >
-        <Text style={{ color: "white", fontWeight: "800", fontSize: 17, flex: 1 }}>
+        <Text style={{ color: "#1A1A1A", fontWeight: "600", fontSize: 16, flex: 1 }}>
           {item.title}
         </Text>
-        <IconButton icon="pencil" iconColor="white" onPress={() => handleedittodo(item)} />
-        <IconButton icon="trash-can" iconColor="white" onPress={() => handledeletetodo(item.id)} />
+        <IconButton icon="pencil" iconColor="#E31A22" size={20} onPress={() => handleedittodo(item)} />
+        <IconButton icon="trash-can" iconColor="#E31A22" size={20} onPress={() => handledeletetodo(item.id)} />
       </View>
     );
   };
@@ -96,13 +100,13 @@ export default function Index() {
   return (
     <SafeAreaView>
       <View>
-        <Text style={{ marginLeft: 10, marginTop: 10, fontWeight: "bold", fontSize: 25, marginBottom: 2 }}>
+<Text style={{ marginLeft: 16, marginTop: 16, fontWeight: "700", fontSize: 26, color: "#1A1A1A", letterSpacing: 0.3 }}>
           Welcome to ToDo List
         </Text>
-        <Text style={{ marginLeft: 10 }}>
+        <Text style={{ marginLeft: 16, marginTop: 4, marginBottom: -4, fontSize: 14, fontWeight: "500", color: "#E31A22" }}>
           {`${new Date().toLocaleDateString("en-US", {
             weekday: "long",
-          })} : ${new Date().toLocaleDateString("en-US", {
+          })} • ${new Date().toLocaleDateString("en-US", {
             day: "numeric",
             month: "long",
           })}`}
@@ -124,35 +128,39 @@ export default function Index() {
           <TouchableOpacity
             style={{
               borderWidth: 1,
-              borderColor: "black",
+              borderColor: "#E31A22",
               alignItems: "center",
               padding: 10,
               margin: 10,
               borderRadius: 20,
               marginTop: 2,
               backgroundColor: "#E31A22",
+              paddingVertical:15
             }}
             onPress={handleupdatetodo}
           >
-            <Text style={{ color: "white", fontSize: 18, fontWeight: "bold" }}>Save</Text>
+            <Text style={{ color: "white", fontSize: 20, fontWeight: "bold" }}>Update Todo</Text>
           </TouchableOpacity>
         ) : (
           <TouchableOpacity
             style={{
               borderWidth: 1,
-              borderColor: "black",
+              borderColor: "#E31A22",
               alignItems: "center",
               padding: 10,
               margin: 10,
               borderRadius: 20,
               marginTop: 2,
               backgroundColor: "#E31A22",
+              paddingVertical:15
             }}
             onPress={handleaddtodo}
           >
-            <Text style={{ color: "white", fontSize: 18, fontWeight: "bold" }}>Add</Text>
+            <Text style={{ color: "white", fontSize: 20, fontWeight: "bold", }}>Add Todo</Text>
           </TouchableOpacity>
+          
         )}
+        <Text style={{marginBottom:-3}}></Text>
         <FlatList data={todolist} renderItem={renderTodos} />
         <View style={{ alignItems: "center" }}>
           {todolist.length <= 0 && <Fallback />}
